@@ -1,8 +1,8 @@
 name: Reloj del Robot Nexus
 on:
   schedule:
-    - cron: '0 * * * *' # Esto hace que revise cada hora exacta
-  workflow_dispatch: # Esto permite que lo actives tú cuando quieras
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 jobs:
   ejecutar-robot:
@@ -10,15 +10,12 @@ jobs:
     steps:
       - name: Descargar codigo
         uses: actions/checkout@v3
-
       - name: Instalar Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-
       - name: Instalar librerias
         run: pip install requests beautifulsoup4 supabase
-
       - name: Correr Robot
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
